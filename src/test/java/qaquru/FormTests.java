@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 
@@ -22,8 +23,7 @@ public class FormTests {
         $("#firstName").setValue("Alexandra");
         $("#lastName").setValue("Good");
         $("#userEmail").setValue("alexandra@gmail.com");
-
-      //  $$(".custom-radio").find(text("gender-radio-2")).click();
+        $(byText("Female")).click();
         $("#userNumber").setValue("9999990000");
 
 
