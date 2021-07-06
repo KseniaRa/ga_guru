@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -35,7 +37,7 @@ public class FormTests {
         $(".react-datepicker__year-select").selectOption("1995");
         $(".react-datepicker__day--001:nth-child(4)").click();
         $("#subjectsInput").setValue("M").pressEnter();
-        $("#uploadPicture").uploadFromClasspath(("xh7m8nokzhgfqixb00fnwcmkthm.jpeg"));
+        $("#uploadPicture").uploadFile(new File("src/test/resources/file.png"));
         $(byText("Reading")).click();
         $("#currentAddress").setValue("some home on some street");
         $("#state").click();
