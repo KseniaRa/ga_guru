@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import static com.codeborne.selenide.Condition.selectedText;
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.files.DownloadActions.click;
@@ -23,6 +22,7 @@ public class FormTests {
     @Test
     void positiveFillTest() {
         open("/automation-practice-form");
+        //Заполнение полей
         $("#firstName").setValue("Alexandra");
         $("#lastName").setValue("Good");
         $("#userEmail").setValue("alexandra@gmail.com");
@@ -44,10 +44,20 @@ public class FormTests {
         $("#stateCity-wrapper").$(byText("Panipat")).click();
         $("#submit").click();
 
+        //Проверка данных
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".table-responsive").shouldHave(text("Alexandra Good"),
+                text("alexandra@gmail.com"),
+                text("Female"),
+                text("9999990000"),
+                text("01 November, 1995"),
+                text("Maths"),
+                text("Reading"),
+                text("xh7m8nokzhgfqixb00fnwcmkthm.jpeg"),
+                text("some home on some street"),
+                text("Haryana Panipat"));
 
-
-
-
-
+        $("#closeLargeModal").click();
+        $("#example-modal-sizes-title-lg").should(disappear);
     }
 }
