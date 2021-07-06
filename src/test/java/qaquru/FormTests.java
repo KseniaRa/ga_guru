@@ -37,25 +37,22 @@ public class FormTests {
         $(".react-datepicker__year-select").selectOption("1995");
         $(".react-datepicker__day--001:nth-child(4)").click();
         $("#subjectsInput").setValue("M").pressEnter();
-        $("#uploadPicture").uploadFile(new File("src/test/resources/file.png"));
+        $("#uploadPicture").uploadFile(new File("src/test/resources/file.jpeg"));
         $(byText("Reading")).click();
         $("#currentAddress").setValue("some home on some street");
-        $("#state").click();
-        $("#stateCity-wrapper").$(byText("Haryana")).click();
-        $("#city").click();
-        $("#stateCity-wrapper").$(byText("Panipat")).click();
-        $("#submit").click();
+        $("#react-select-3-input").setValue("Haryana").pressEnter();
+        $("#react-select-4-input").setValue("Panipat").pressEnter();
+        $("#submit").scrollTo().click();
 
         //Проверка данных
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
         $(".table-responsive").shouldHave(text("Alexandra Good"),
                 text("alexandra@gmail.com"),
                 text("Female"),
                 text("9999990000"),
-                text("01 November, 1995"),
+                text("1 November,1995"),
                 text("Maths"),
                 text("Reading"),
-                text("xh7m8nokzhgfqixb00fnwcmkthm.jpeg"),
+                text("file.jpeg"),
                 text("some home on some street"),
                 text("Haryana Panipat"));
 
