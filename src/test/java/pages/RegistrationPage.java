@@ -14,12 +14,13 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class RegistrationPage {
 
-    private Calendar calendar= new Calendar;
+    private Calendar calendar= new Calendar();
 
     public RegistrationPage openPage(){
 
         open("/automation-practice-form");
-        }
+        return this;
+    }
 
     public RegistrationPage typeFirstName(String firstName) {
         $("#firstName").val(firstName);
@@ -39,11 +40,13 @@ public class RegistrationPage {
 
     public RegistrationPage chooseGender(){
         $("#genterWrapper").$(byText("Female")).click();
+        return this;
     }
 
 
     public RegistrationPage typePhone(){
         $("#userNumber").setValue("9999990000");
+        return this;
     }
 
     public RegistrationPage setBirthDate(String day, String month, String year){
@@ -53,30 +56,37 @@ public class RegistrationPage {
 
     public RegistrationPage chooseSubject(){
         $("#subjectsInput").setValue("M").pressEnter();
+        return this;
     }
 
     public RegistrationPage uploadPicture(){
         $("#uploadPicture").uploadFile(new File("src/test/resources/file.jpeg"));
+        return this;
     }
 
     public RegistrationPage chooseHobby(){
         $("#hobbiesWrapper").$(byText("Reading")).click();
+        return this;
     }
 
     public RegistrationPage typeAddress(){
         $("#currentAddress").setValue("some home on some street");
+        return this;
     }
 
     public RegistrationPage chooseState(){
         $("#react-select-3-input").setValue("Haryana").pressEnter();
+        return this;
     }
 
     public RegistrationPage chooseCity(){
         $("#react-select-4-input").setValue("Panipat").pressEnter();
+        return this;
     }
 
     public RegistrationPage submitForm(){
         $("#submit").scrollTo().click();
+        return this;
     }
 
     public RegistrationPage checkResults(){
@@ -90,11 +100,13 @@ public class RegistrationPage {
                 text("file.jpeg"),
                 text("some home on some street"),
                 text("Haryana Panipat"));
+        return this;
     }
 
     public RegistrationPage closePopup(){
         $("#closeLargeModal").click();
         $("#example-modal-sizes-title-lg").should(disappear);
+        return this;
     }
 
     }
