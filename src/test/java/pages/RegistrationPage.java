@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static java.lang.String.format;
 
 
 public class RegistrationPage {
@@ -38,14 +39,14 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage chooseGender(){
-        $("#genterWrapper").$(byText("Female")).click();
+    public RegistrationPage chooseGender(String gender){
+        $(format("[name=gender][value=%s]", gender)).parent().click();
         return this;
     }
 
 
-    public RegistrationPage typePhone(){
-        $("#userNumber").setValue("9999990000");
+    public RegistrationPage typePhone(int phone){
+        $("#userNumber").setValue(phone);
         return this;
     }
 
@@ -54,33 +55,33 @@ public class RegistrationPage {
             return this;
         }
 
-    public RegistrationPage chooseSubject(){
-        $("#subjectsInput").setValue("M").pressEnter();
+    public RegistrationPage chooseSubject(String subject){
+        $("#subjectsInput").setValue(subject).pressEnter();
         return this;
     }
 
-    public RegistrationPage uploadPicture(){
-        $("#uploadPicture").uploadFile(new File("src/test/resources/file.jpeg"));
+    public RegistrationPage uploadPicture(String picture){
+        $("#uploadPicture").uploadFile(new File("src/test/resources/" + picture));
         return this;
     }
 
-    public RegistrationPage chooseHobby(){
-        $("#hobbiesWrapper").$(byText("Reading")).click();
+    public RegistrationPage chooseHobby(String hobby){
+        $("#hobbiesWrapper").$(byText("hobby")).click();
         return this;
     }
 
-    public RegistrationPage typeAddress(){
-        $("#currentAddress").setValue("some home on some street");
+    public RegistrationPage typeAddress( String address){
+        $("#currentAddress").setValue(address);
         return this;
     }
 
-    public RegistrationPage chooseState(){
-        $("#react-select-3-input").setValue("Haryana").pressEnter();
+    public RegistrationPage chooseState(String State){
+        $("#react-select-3-input").setValue(State).pressEnter();
         return this;
     }
 
-    public RegistrationPage chooseCity(){
-        $("#react-select-4-input").setValue("Panipat").pressEnter();
+    public RegistrationPage chooseCity(String City){
+        $("#react-select-4-input").setValue(City).pressEnter();
         return this;
     }
 
@@ -89,17 +90,8 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage checkResults(){
-        $(".table-responsive").shouldHave(text("Alexandra Good"),
-                text("alexandra@gmail.com"),
-                text("Female"),
-                text("9999990000"),
-                text("1 November,1995"),
-                text("Maths"),
-                text("Reading"),
-                text("file.jpeg"),
-                text("some home on some street"),
-                text("Haryana Panipat"));
+    public RegistrationPage checkResults(String results){
+        $(".table-responsive").shouldHave(text(results));
         return this;
     }
 

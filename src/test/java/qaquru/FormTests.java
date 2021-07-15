@@ -1,6 +1,7 @@
 package qaquru;
 
 import com.codeborne.selenide.Configuration;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -18,6 +19,11 @@ import static com.codeborne.selenide.files.DownloadActions.click;
 public class FormTests {
     RegistrationPage registrationPage= new RegistrationPage();
 
+    Faker faker = new Faker();
+    String firstName = faker.name().firstName();
+    String lastName = faker.name().lastName();
+    String email = faker.internet().emailAddress();
+
     @BeforeAll
     static void setup() {
         Configuration.baseUrl="https://demoqa.com";
@@ -28,13 +34,13 @@ public class FormTests {
     void positiveFillTest() {
        registrationPage.openPage();
         //Заполнение полей
-       registrationPage.typeFirstName()
-                        .typeLastName()
-                        .typeEmail()
+       registrationPage.typeFirstName(firstName)
+                        .typeLastName(lastName)
+                        .typeEmail(email)
                         .chooseGender()
                         .typePhone();
 
-        registrationPage.setBirthDate(01,"November",1995);
+        registrationPage.setBirthDate("01","November","1995");
 
 
        registrationPage.chooseSubject();
