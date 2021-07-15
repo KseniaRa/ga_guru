@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import pages.RegistrationPage;
 
 import java.io.File;
 
@@ -15,6 +16,8 @@ import static com.codeborne.selenide.files.DownloadActions.click;
 
 
 public class FormTests {
+    RegistrationPage registrationPage= new RegistrationPage();
+
     @BeforeAll
     static void setup() {
         Configuration.baseUrl="https://demoqa.com";
@@ -23,38 +26,30 @@ public class FormTests {
 
     @Test
     void positiveFillTest() {
-        open("/automation-practice-form");
+       registrationPage.openPage();
         //Заполнение полей
-        $("#firstName").setValue("Alexandra");
-        $("#lastName").setValue("Good");
-        $("#userEmail").setValue("alexandra@gmail.com");
-        $("#genterWrapper").$(byText("Female")).click();
-        $("#userNumber").setValue("9999990000");
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption("November");
-        $(".react-datepicker__year-select").selectOption("1995");
-        $(".react-datepicker__day--001").click();
-        $("#subjectsInput").setValue("M").pressEnter();
-        $("#uploadPicture").uploadFile(new File("src/test/resources/file.jpeg"));
-        $("#hobbiesWrapper").$(byText("Reading")).click();
-        $("#currentAddress").setValue("some home on some street");
-        $("#react-select-3-input").setValue("Haryana").pressEnter();
-        $("#react-select-4-input").setValue("Panipat").pressEnter();
-        $("#submit").scrollTo().click();
+       registrationPage.typeFirstName()
+                        .typeLastName()
+                        .typeEmail()
+                        .chooseGender()
+                        .typePhone();
+
+        registrationPage.setBirthDate(01,"November",1995);
+
+
+       registrationPage.chooseSubject();
+       registrationPage.uploadPicture();
+       registrationPage.chooseHobby();
+       registrationPage.typeAddress();
+       registrationPage.chooseState();
+       registrationPage.chooseCity();
+       registrationPage.submitForm();
+
 
         //Проверка данных
-        $(".table-responsive").shouldHave(text("Alexandra Good"),
-                text("alexandra@gmail.com"),
-                text("Female"),
-                text("9999990000"),
-                text("1 November,1995"),
-                text("Maths"),
-                text("Reading"),
-                text("file.jpeg"),
-                text("some home on some street"),
-                text("Haryana Panipat"));
+       registrationPage.checkResults();
+       registrationPage.closePopup();
 
-        $("#closeLargeModal").click();
-        $("#example-modal-sizes-title-lg").should(disappear);
+
     }
 }
