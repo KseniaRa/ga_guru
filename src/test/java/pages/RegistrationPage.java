@@ -1,7 +1,7 @@
 package pages;
 
 import components.Calendar;
-import utils.RandomUtils;
+
 
 import java.io.File;
 
@@ -16,7 +16,6 @@ import static java.lang.String.format;
 public class RegistrationPage {
 
     private Calendar calendar= new Calendar();
-    private RandomUtils randomUtils= new RandomUtils();
 
     public RegistrationPage openPage(){
 
