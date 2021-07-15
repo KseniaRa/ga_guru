@@ -1,7 +1,7 @@
 package pages;
 
-import com.codeborne.selenide.Selenide;
 import components.Calendar;
+import utils.RandomUtils;
 
 import java.io.File;
 
@@ -16,6 +16,7 @@ import static java.lang.String.format;
 public class RegistrationPage {
 
     private Calendar calendar= new Calendar();
+    private RandomUtils randomUtils= new RandomUtils();
 
     public RegistrationPage openPage(){
 
@@ -45,7 +46,7 @@ public class RegistrationPage {
     }
 
 
-    public RegistrationPage typePhone(int phone){
+    public RegistrationPage typePhone(String phone){
         $("#userNumber").setValue(phone);
         return this;
     }
@@ -65,8 +66,8 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage chooseHobby(String hobby){
-        $("#hobbiesWrapper").$(byText("hobby")).click();
+    public RegistrationPage chooseHobbies(String hobbies){
+        $("#hobbiesWrapper").$(byText(hobbies)).click();
         return this;
     }
 
@@ -75,13 +76,13 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage chooseState(String State){
-        $("#react-select-3-input").setValue(State).pressEnter();
+    public RegistrationPage chooseState(String state){
+        $("#react-select-3-input").setValue(state).pressEnter();
         return this;
     }
 
-    public RegistrationPage chooseCity(String City){
-        $("#react-select-4-input").setValue(City).pressEnter();
+    public RegistrationPage chooseCity(String city){
+        $("#react-select-4-input").setValue(city).pressEnter();
         return this;
     }
 
