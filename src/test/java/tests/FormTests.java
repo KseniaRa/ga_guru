@@ -1,4 +1,4 @@
-package qaquru;
+package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
@@ -68,6 +68,7 @@ public class FormTests {
                .checkResults(state + " " + city);
 
        registrationPage.closePopup();
+       registrationPage.checkClosePopup();
 
 
     }

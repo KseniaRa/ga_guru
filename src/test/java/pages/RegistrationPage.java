@@ -97,9 +97,14 @@ public class RegistrationPage {
 
     public RegistrationPage closePopup(){
         $("#closeLargeModal").click();
+        return this;
+    }
+
+    public RegistrationPage checkClosePopup(){
         $("#example-modal-sizes-title-lg").should(disappear);
         return this;
     }
+
 
     }
 
