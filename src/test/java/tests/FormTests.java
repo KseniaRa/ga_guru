@@ -28,10 +28,7 @@ public class FormTests {
     String state = "Haryana";
     String city = "Panipat";
 
-    @BeforeAll
-    static void setup() {
-        Configuration.baseUrl="https://demoqa.com";
-        Configuration.startMaximized = true;
+
     }
 
     @Test
