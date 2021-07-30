@@ -5,10 +5,10 @@ import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+import pages.TestBase;
 
 
-
-public class FormTests {
+public class FormTests  extends TestBase {
     RegistrationPage registrationPage= new RegistrationPage();
 
 
@@ -29,10 +29,10 @@ public class FormTests {
     String city = "Panipat";
 
 
-    }
+
 
     @Test
-    void positiveFillTest() {
+   void positiveFillTest() {
        registrationPage.openPage();
         //Заполнение полей
        registrationPage.typeFirstName(firstName)
